@@ -2,7 +2,7 @@
 
 salario = float(input("Digite o valor do seu salário: R$ "))
 
-salario_minimo = 1412.00 
+salario_minimo = 1621.00 
 
 quantidade_salarios = salario / salario_minimo
 

@@ -1,0 +1,38 @@
+# Qual o peso do lutador?
+
+peso_lutador = float(input("Qual o peso do lutador(kg)?: "))
+
+# Categorias de peso
+''''
+if peso_lutador <= 50:
+    print("Palha")
+
+elif peso_lutador <= 59.99:
+    print("Pluma")
+
+elif peso_lutador <= 75.99:
+    print("Leve")
+
+elif peso_lutador <= 87.99:
+    print('Pesado')
+
+else:
+    print ("Super Pesado")
+'''
+
+if peso_lutador < 50:
+   categoria = "Palha"
+
+elif peso_lutador <= 59.99:
+   categoria = 'Pluma'
+
+elif peso_lutador <= 75.99:
+    categoria = "Leve"
+
+elif peso_lutador <= 87.99:
+    categoria = 'Pesado'
+
+else:
+    categoria = "Super Pesado"
+
+print(f"Voce foi classificado como: {categoria}")
