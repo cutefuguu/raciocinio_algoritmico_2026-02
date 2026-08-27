@@ -14,12 +14,11 @@ numero = -100
 while numero <= 100:
     print(numero)
     numero += 10
+'''
 
 # 3) 7, 14, 21, 28...70
 numero = 7
-'''
 
 while numero <= 70:
     print(numero)
     numero += 7
-
