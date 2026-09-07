@@ -1,0 +1,75 @@
+import random
+
+playing = True
+jogada_p1 = 0
+jogada_p2 = 0
+nome_p1 = " "
+nome_p2 = " "
+n_rodada = 0
+pts_p1 = 0
+pts_p2 = 0
+
+# Usuário deve escolher a modalidade de jogo
+modalidade = int(input("Selecione o modo de jogo: 1) PvP  2) PvE  3) EvE: "))
+while playing == True:
+    # 1. PvP:
+    if modalidade == 1:
+        if nome_p1 == " ":
+            nome_p1 = input("Insira o nome do 1º Jogador: ")
+        if nome_p2 == " ":
+            nome_p2 = input("Insira o nome do 2º Jogador: ")
+
+        jogada_p1 = int(input("Jokenpo! 1) Pedra | 2) Papel | 3) Tesoura: "))
+        jogada_p2 = int(input("Jokenpo! 1) Pedra | 2) Papel | 3) Tesoura: "))
+        n_rodada += 1
+
+    # 2. PvE:
+    elif modalidade == 2:
+        if nome_p1 == " ":
+            nome_p1 = input("Insira o nome do 1º Jogador: ")
+        nome_p2 = "Claudio_Bot"
+
+        jogada_p1 = int(input("Jokenpo! 1) Pedra | 2) Papel | 3) Tesoura: "))
+        jogada_p2 = random.randint(1, 3)
+        n_rodada += 1
+
+    # 3. EvE:
+    elif modalidade == 3:
+        nome_p1 = "Robertinho_Bot"
+        nome_p2 = "Claudio_Bot"
+
+        jogada_p1 = random.randint(1, 3)
+        jogada_p2 = random.randint(1, 3)
+        n_rodada += 1
+
+    else:
+        print("Modalidade inválida. Escolha 1, 2 ou 3.")
+        continue
+
+    if jogada_p1 not in [1, 2, 3] or jogada_p2 not in [1, 2, 3]:
+        print("Jogada inválida. Escolha 1, 2 ou 3.")
+        continue
+        
+    # Mostrar as jogadas dos jogadores
+    print(f"Rodada {n_rodada}: {nome_p1} jogou {'Pedra' if jogada_p1 == 1 else 'Papel' if jogada_p1 == 2 else 'Tesoura'} x {nome_p2} jogou {'Pedra' if jogada_p2 == 1 else 'Papel' if jogada_p2 == 2 else 'Tesoura'}")
+
+# Determinar o vencedor da rodada
+    if jogada_p1 == jogada_p2:
+        print("Empate!")
+    elif (jogada_p1 == 1 and jogada_p2 == 3) or (jogada_p1 == 2 and jogada_p2 == 1) or (jogada_p1 == 3 and jogada_p2 == 2):
+        print(f"{nome_p1} venceu a rodada!")
+        pts_p1 += 1
+    else:
+        print(f"{nome_p2} venceu a rodada!")
+        pts_p2 += 1
+
+# Perguntar se deseja continuar jogando
+    continuar = input("Deseja jogar novamente? (s/n): ")
+    # Se o jogador digitar errado:
+    while continuar not in ['s', 'n']:
+        print("Opção inválida. Digite 's' para sim ou 'n' para não.")
+        continuar = input("Deseja jogar novamente? (s/n): ")
+    if continuar != 's':
+        playing = False
+        print("Obrigado por jogar!")
+        print(f"Número de rodadas: {n_rodada} | Placar Final:[{nome_p1}: {pts_p1} x {pts_p2} {nome_p2}]")
