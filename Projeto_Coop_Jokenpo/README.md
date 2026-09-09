@@ -133,7 +133,7 @@ Projeto_Coop_Jokenpo/
 
 Atividade de Raciocínio Algorítmico - 2026.02
 
-**Data de Conclusão:** [Data da Entrega]
+**Data de Conclusão:** 09.09.2026
 
 ---
 
