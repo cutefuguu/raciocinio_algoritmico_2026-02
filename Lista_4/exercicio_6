@@ -1,0 +1,11 @@
+'''Imprima uma tabela de conversão de polegadas para centímetros, cuja escala vai de
+1 a 20 polegadas. A conversão entre estas duas unidades é dada por: centímetro =
+polegada × 2,54
+'''
+
+polegadas = 1
+
+while polegadas <= 20:
+    cm = polegadas * 2.54
+    print(f"{polegadas}.0 in X {cm} cm")
+    polegadas += 1

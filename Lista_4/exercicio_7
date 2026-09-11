@@ -1,0 +1,14 @@
+'''Considerando que 1 milha vale exatamente 1.609,344 metros, imprima uma tabela
+de conversão de metros (m) para milhas (mi.), de 20 km até 160 km, de 10 em 10
+quilômetros.'''
+
+METROS_POR_MILHA = 1609.344
+
+print(f"{'Quilômetros (km)'} | {'Metros (m)'} | {'Milhas (mi)'}")
+
+km = 20
+while km <= 160:
+    metros = km * 1000
+    milhas = metros / METROS_POR_MILHA
+    print(f"{km} | {metros} | {milhas:.3f}")
+    km += 10

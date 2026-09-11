@@ -1,0 +1,10 @@
+# Elabore um algoritmo que leia um conjunto de 10 números inteiros. Mostre então qual o valor da soma e da média aritmética do conjunto
+soma = 0
+n = int(input("Informe um número: "))
+
+while n <= 10:
+    n = int(input("Informe um número: "))
+    soma += n
+
+media = soma / 10
+print(f"Soma: {soma} | Média: {media}")

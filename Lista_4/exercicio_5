@@ -1,0 +1,8 @@
+# Imprima os números ímpares de 1 até n, sendo n fornecido pelo usuário.
+i = 1
+n = int(input("Forneça um valor para n: "))
+
+while n >= i:
+    if i % 2 != 0:
+        print(i)
+    i += 1

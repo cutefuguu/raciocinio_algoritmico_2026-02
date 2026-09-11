@@ -1,0 +1,34 @@
+'''Uma empresa de câmbio permite a compra de dólares, libras e euros. Elabore um
+algoritmo que leia o código da moeda que o cliente quer comprar e qual o montante
+que ele quer adquirir nessa moeda. Mostre então quanto ele deverá pagar em reais
+para concretizar a operação. Além da cotação, a empresa cobra uma comissão de 5%
+(quando o valor for menor que R$ 1.000), ou de 3% (quando maior ou igual a
+R$1.000). Considere o câmbio do dia. '''
+
+# Usuário deve escolher a moeda e o valor que gostaria de sacar.
+print("Bem-vindo ao conversor de moedas.")
+moeda = int(input(f"Selecione a moeda que gostaria de comprar: 1) Dólar  | 2) Libras  | 3) Euro: "))
+montante = int(input("Valor que gostaria de sacar na moeda escolhida: "))
+
+# Câmbio dia: 10.09.2026
+dolar = 5.10 
+libras = 6.89
+euro = 5.92
+
+if moeda == 1:
+    moeda = 'Dólares'
+    valor = montante * dolar
+
+elif moeda == 2:
+    moeda = 'Libras'
+    valor = montante * libras
+else:
+    moeda = "Euros"
+    valor = montante * 5.92
+
+if valor < 1000:
+   total = valor * 0.5
+else:
+    total = valor * 0.3
+
+print(f"{montante} {moeda} fica {total:.2f} Reais")
