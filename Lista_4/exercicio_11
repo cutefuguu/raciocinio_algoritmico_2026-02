@@ -1,0 +1,15 @@
+# Imprima os números múltiplos de 3 entre li (limite inicial) e lf (limite final).
+# Os valores inteiros de li e lf devem ser informados pelo usuário e não pertencem ao intervalo,
+# ou seja, intervalo aberto.
+
+li = int(input("Digite o limite inicial (li): "))
+lf = int(input("Digite o limite final (lf): "))
+
+if li > lf:
+    li, lf = lf, li
+
+print(f"Múltiplos de 3 entre {li} e {lf} (intervalo aberto):")
+
+for num in range(li + 1, lf):
+    if num % 3 == 0:
+        print(num)
