@@ -1,0 +1,13 @@
+#Leia dois valores reais do teclado, calcular e imprimir na tela:
+# a) A soma destes valores b) O produto deles c) O quociente entre eles
+
+valor1 = float(input("Digite o primeiro valor real: "))
+valor2 = float(input("Digite o segundo valor real: "))
+
+soma = valor1 + valor2
+produto = valor1 * valor2
+quociente = valor1 / valor2 if valor2 != 0 else "Indefinido"
+
+print(f"a) A soma destes valores é: {soma}")
+print(f"b) O produto deles é: {produto}")
+print(f"c) O quociente entre eles é: {quociente}")

@@ -1,0 +1,10 @@
+# Ler 4 números inteiros e calcular a soma dos que forem par
+soma = 0
+
+for i in range(4):
+    num = int(input(f"Digite o {i + 1}º número inteiro: "))
+    if num % 2 == 0:
+        soma += num
+        print(f"O número {num} é par e foi adicionado à soma.")
+        
+print(f"A soma dos números pares é: {soma}")

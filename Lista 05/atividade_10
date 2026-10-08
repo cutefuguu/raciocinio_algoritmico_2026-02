@@ -1,0 +1,29 @@
+'''Escreva um programa que leia um vetor de números inteiros de 10 posições, aceitando apenas valores positivos. Modifique
+então o vetor de forma que, tenhamos primeiro todos os números pares, depois, os números impares. Mostre o vetor antes de
+depois da modificação.'''
+print("Digite 10 números inteiros positivos:")
+vetor = []
+for i in range(10):
+    while True:
+        num = int(input(f"Posição [{i + 1}]: "))
+        if num > 0:
+            vetor.append(num)
+            break
+        else:
+            print("Por favor, digite um número inteiro positivo.")
+
+# Separar pares e ímpares
+pares = []
+impares = []
+
+for num in vetor:
+    if num % 2 == 0:
+        pares.append(num)
+    else:
+        impares.append(num)
+
+# Modificar o vetor
+vetor = pares + impares
+
+print("Vetor antes da modificação:")
+print(vetor)
