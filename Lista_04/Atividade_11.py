@@ -17,7 +17,7 @@ while qnt_sorteados < 6:
 
 print(f'Números sorteados: {sorteio}')
 
-# Obter a aposta do usuário
+# Aposta do usuario
 aposta = ""
 qnt_apostados = 0
 

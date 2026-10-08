@@ -1,0 +1,9 @@
+# Ler 3 numeros do teclado e verificar se o primeiro é maior que a soma dos outros dois
+num1 = int(input("Digite o 1º número: "))
+num2 = int(input("Digite o 2º número: "))
+num3 = int(input("Digite o 3º número: "))
+
+if num1 > (num2 + num3):
+    print(f"O 1º número ({num1}) é maior que a soma dos outros dois ({num2} + {num3} = {num2 + num3}).")
+else:
+    print(f"O 1º número ({num1}) NÃO é maior que a soma dos outros dois ({num2} + {num3} = {num2 + num3}).")

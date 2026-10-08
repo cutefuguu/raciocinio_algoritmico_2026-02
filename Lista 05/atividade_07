@@ -1,0 +1,45 @@
+'''A Amplitude amostral é uma médida de dispersão, ela é calculada como a diferença entre o valor máximo e o valor mínimo
+de uma amostra. Elabore um programa que leia um vetor de 10 posições inteiras e então mostre o valor máximo, o valor
+mínimo e a amplitude amostral do conjunto fornecido'''
+
+vetor = []
+
+print("Digite 10 números inteiros:")
+for i in range(10):
+    num = int(input(f"Posição [{i}]: "))
+    vetor.append(num)
+
+# Inicializa o maior e o menor com o primeiro elemento do vetor
+valor_maximo = vetor[0]
+valor_minimo = vetor[0]
+
+# Encontra o maior e o menor valor manualmente
+for num in vetor:
+    if num > valor_maximo:
+        valor_maximo = num
+    if num < valor_minimo:
+        valor_minimo = num
+
+# Cálculo da amplitude amostral
+amplitude = valor_maximo - valor_minimo
+
+print("-" * 25)
+print(f"Vetor: {vetor}")
+print(f"Valor máximo: {valor_maximo}")
+print(f"Valor mínimo: {valor_minimo}")
+print(f"Amplitude amostral: {amplitude}")
+
+''' 
+# Versao simplificada usando funções built-in do Python:
+
+vetor = [int(input(f"Posição [{i}]: ")) for i in range(10)]
+
+valor_maximo = max(vetor)
+valor_minimo = min(vetor)
+amplitude = valor_maximo - valor_minimo
+
+print(f"\nValor máximo: {valor_maximo}")
+print(f"Valor mínimo: {valor_minimo}")
+print(f"Amplitude amostral: {amplitude}")
+
+'''
