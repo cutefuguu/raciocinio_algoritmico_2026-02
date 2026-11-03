@@ -1,7 +1,7 @@
 # ☕ Máquina de Bebidas (Vending Machine)
 
 Alunos: Taina Nakashima e Caio Guilherme
-Professor:
+Professor: Vilmar Abreu
 Projeto colaborativo de simulação de "Máquina de Venda de Bebidas
 
 ## 🚀 Funcionalidades
@@ -9,7 +9,7 @@ Projeto colaborativo de simulação de "Máquina de Venda de Bebidas
 - **Cardápio Dinâmico:** Leitura e exibição de produtos a partir de uma matriz estruturada.
 - **Validação de Estoque:** Verificação de disponibilidade do produto antes de autorizar a cobrança.
 - **Processamento de Pagamentos:** Laço de validação que exige a inserção do valor total ou superior ao preço do produto em dinheiro.
-- **Algoritmo de Troco (Greedy):** Sistema de divisão sequencial (do maior para o menor valor) que calcula a menor quantidade de notas e moedas possíveis para devolução.
+- **Algoritmo de Troco:** Sistema de divisão sequencial (do maior para o menor valor) que calcula a menor quantidade de notas e moedas possíveis para devolução.
 - **Gestão de Cofre Físico:** Simulação prévia do troco (`.copy()`) para garantir que a máquina só efetive a venda se possuir as cédulas exatas necessárias.
 
 ## 🧠 Lógica e Estrutura de Dados
