@@ -1,0 +1,68 @@
+import random
+
+# 1. Vetor de palavras-chave (Capitais do Brasil em maiúsculas e sem acento)
+palavras = [
+    "CURITIBA", "BRASILIA", "MANAUS", "SALVADOR", 
+    "RECIFE", "FORTALEZA", "FLORIANOPOLIS", "NATAL"
+]
+
+# Sorteia a palavra secreta
+palavra_secreta = random.choice(palavras)
+
+vidas = 6
+letras_usadas = []
+
+print("=== JOGO DA FORCA ===")
+print("Tema: Capitais do Brasil\n")
+
+# Loop principal do jogo
+while vidas > 0:
+    # Mostra o status atual
+    print(f"Vidas restantes: {vidas}")
+    print(f"Letras já usadas: {', '.join(letras_usadas) if letras_usadas else 'Nenhuma'}")
+
+    # Monta a visualização da palavra (ex: C _ R I T I B A)
+    acertou_todas = True
+    disposicao = []
+    
+    for letra in palavra_secreta:
+        if letra in letras_usadas:
+            disposicao.append(letra)
+        else:
+            disposicao.append("_")
+            acertou_todas = False
+            
+    print("Palavra: " + " ".join(disposicao))
+    print("-" * 30)
+
+    # Verifica se já completou a palavra
+    if acertou_todas:
+        print(f"\nParabéns! Você venceu! A palavra era: {palavra_secreta}")
+        break
+
+    # Leitura do palpite
+    palpite = input("Digite uma letra: ").strip().upper()
+
+    # Validação da entrada (apenas uma letra válida)
+    if len(palpite) != 1 or not palpite.isalpha():
+        print("Entrada inválida! Digite apenas uma letra.\n")
+        continue
+
+    # Verifica repetição
+    if palpite in letras_usadas:
+        print("Você já tentou essa letra! Não perde vidas.\n")
+        continue
+
+    # Registra a nova tentativa
+    letras_usadas.append(palpite)
+
+    # Verifica acerto ou erro
+    if palpite in palavra_secreta:
+        print(f"Boa! A letra '{palpite}' está na palavra.\n")
+    else:
+        vidas -= 1
+        print(f"Que pena! A letra '{palpite}' não está na palavra.\n")
+
+# Se esgotaram as vidas
+if vidas == 0:
+    print(f"Fim de jogo! Você perdeu. A palavra era: {palavra_secreta}")

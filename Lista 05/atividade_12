@@ -1,0 +1,27 @@
+''' 
+Desenvolva um programa que leia um vetor de 20 posições inteiras e o coloque em ordem crescente, utilizando a seguinte
+estratégia de ordenação:
+• selecione o elemento do vetor de 20 posições que apresenta o menor valor;
+• troque este elemento pelo primeiro;
+• repita estas operações, envolvendo agora apenas os 19 elementos restantes (trocando o de menor valor com a segunda
+posição), depois os 18 elementos (trocando o de menor valor com a terceira posição), depois os 17, 16 e assim por diante,
+até restar um único elemento, o maior deles. 
+'''
+vetor = []
+# Ler 20 numeros:
+print("Digite 20 números inteiros:")
+for i in range(20):
+    num = int(input(f"Posição [{i + 1}]: "))
+    vetor.append(num)
+
+# Ordenar a parada
+for i in range(20):
+    min_index = i
+    for j in range(i + 1, 20):
+        if vetor[j] < vetor[min_index]:
+            min_index = j
+    # Trocar o elemento de menor valor de posição
+    vetor[i], vetor[min_index] = vetor[min_index], vetor[i]
+
+print("Vetor ordenado em ordem crescente:")
+print(vetor)

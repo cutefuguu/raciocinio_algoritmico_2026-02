@@ -1,0 +1,27 @@
+'''Elabore um programa que leia um vetor de 10 posições inteiras. Depois, solicite para o usuário um número que ele gostaria de
+pesquisar neste vetor, caso o número exista no vetor, mostre em qual(is) posição(ões) ele foi encontrado e quantas ocorrências
+foram detectadas.'''
+vetor = []
+
+print("Digite 10 números inteiros:")
+for i in range(10):
+    num = int(input(f"Posição [{i}]: "))
+    vetor.append(num)
+
+# Pesquisar número nesse vetor
+pesquisa = int(input("Digite o número que gostaria de pesquisar: "))
+
+# Verificar em que posição e quantas ocorrências
+ocorrencia = 0
+posicoes = []
+
+for i, num in enumerate(vetor):
+    if num == pesquisa:
+        posicoes.append(i)
+        ocorrencia += 1
+
+if ocorrencia > 0:
+    print(f"O número {pesquisa} foi encontrado nas posições: {posicoes}")
+    print(f"Quantidade de ocorrências: {ocorrencia}")
+else:
+    print(f"O número {pesquisa} não foi encontrado no vetor.")
