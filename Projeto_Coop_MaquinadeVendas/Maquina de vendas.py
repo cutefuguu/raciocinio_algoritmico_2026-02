@@ -1,70 +1,68 @@
-# Mostrar matriz com os produtos da máquina de vendas:
 produtos = [
     [1, "Coca Cola", 375, 2],
     [2, "Pepsi", 367, 5],
-    [3, "Monster", 995, 1], 
+    [3, "Monster", 995, 1],
     [4, "Café", 125, 100],
     [5, "Red Bull", 1399, 2]
 ]
 
-# Função para exibir o menu
 def exibir_produtos():
     print("==== MÁQUINA DE BEBIDAS ====")
     for produto in produtos:
-        print("ID:", produto[0], "| Nome:", produto[1], "| Preço: R$", produto[2] / 100, "| Estoque:", produto[3])
+        print(f"ID: {produto[0]} | Nome: {produto[1]} | Preço: R$ {produto[2] / 100:.2f} | Estoque: {produto[3]}")
     print("=============================")
 
-# Estoque de Notas e Moedas da máquina
 estoque_notas = {20000: 10, 10000: 20, 5000: 20, 2000: 20, 1000: 20}
-estoque_moedas = {1: 50, 5: 50, 10: 50, 25: 50, 50: 20, 100: 10}
+estoque_moedas = {100: 10, 50: 20, 25: 50, 10: 50, 5: 50, 1: 50}
 
-# Função pra calcular troco
 def calcular_troco(troco):
-    
-    valores_centavos = [20000,10000, 5000, 2000, 1000, 500, 200, 100, 50, 10, 5, 1]
+    valores_centavos = [20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 25, 10, 5, 1]
+    temp_notas = estoque_notas.copy()
+    temp_moedas = estoque_moedas.copy()
+    troco_a_dar = []
 
+    # Passo 1: Simula o troco para ver se é possível
     for valor in valores_centavos:
+        if troco == 0:
+            break
         quantidade = troco // valor
-        troco = troco % valor
-
+        
         if quantidade > 0:
             if valor >= 200:
-                tipo = "nota(s)"
-                estoque_notas[valor] -= quantidade
+                if valor in temp_notas and temp_notas[valor] >= quantidade:
+                    temp_notas[valor] -= quantidade
+                    troco_a_dar.append((quantidade, "nota(s)", valor))
+                    troco = troco % valor
             else:
-                tipo = "moeda(s)"
-                estoque_moedas[valor] -= quantidade
-            print(f"{quantidade} {tipo} de R$ {valor / 100:.2f}")
-        # Atualizar o estoque de notas e moedas
-        if valor >= 200:
+                if valor in temp_moedas and temp_moedas[valor] >= quantidade:
+                    temp_moedas[valor] -= quantidade
+                    troco_a_dar.append((quantidade, "moeda(s)", valor))
+                    troco = troco % valor
+
+    # Passo 2: Verifica se sobrou valor sem notas disponíveis
+    if troco > 0:
+        print("Erro: A máquina não tem notas ou moedas suficientes para o troco.")
+        return False
+
+    # Passo 3: Efetiva o desconto no estoque real
+    for quantidade, tipo, valor in troco_a_dar:
+        if tipo == "nota(s)":
             estoque_notas[valor] -= quantidade
-        if estoque_moedas[valor] < 0:
-            print(f"Erro: Estoque de {tipo} para R$ {valor / 100:.2f} insuficiente.")
-            print("Venda cancelada.")
-            return
+        else:
+            estoque_moedas[valor] -= quantidade
+        
+    return True
 
-# Função para realizar pagamento
 def processar_pagamento(preco_produto):
-    valor_inserido = float(input("Insira o valor em reais (ex: 5.00): R$ ")) * 100  # Convertendo para centavos
-
+    valor_inserido = float(input("Insira o valor em reais (ex: 5.00): R$ ")) * 100
     while valor_inserido < preco_produto:
         falta = preco_produto - valor_inserido
         print(f"Valor insuficiente. Faltam R$ {falta / 100:.2f}.")
         valor_inserido += float(input("Insira mais dinheiro: R$ ")) * 100
-
-    # Atualizar o estoque de notas e moedas
-    for valor in estoque_notas.keys():
-        quantidade = valor_inserido // valor
-        estoque_notas[valor] += quantidade
-    for valor in estoque_moedas.keys():
-        quantidade = valor_inserido // valor
-        estoque_moedas[valor] += quantidade
-
     return valor_inserido
 
-# Função da venda completa
 def comprar_produto(id_produto):
-    if not isinstance(id_produto, int) or id_produto < 1 or id_produto > len(produtos):
+    if id_produto < 1 or id_produto > len(produtos):
         print("Erro: ID de produto inválido.")
         return
 
@@ -77,30 +75,32 @@ def comprar_produto(id_produto):
         print(f"Desculpe, o produto '{nome_produto}' está esgotado.")
         return
 
-    print(f"Você selecionou: {nome_produto} - Preço: R$ {preco_produto / 100:.2f}")
+    print(f"Você selecionou: {nome_produto} | Preço: R$ {preco_produto / 100:.2f}")
 
     valor_inserido = processar_pagamento(preco_produto)
     troco = valor_inserido - preco_produto
-    print(f"Pagamento realizado com sucesso! Troco: R$ {troco / 100:.2f}")
 
     if troco > 0:
-        print("Seu troco é de R$", troco / 100)
-        calcular_troco(troco)
+        print(f"Pagamento realizado! Calculando troco de R$ {troco / 100:.2f}...")
+        sucesso = calcular_troco(troco)
+        if not sucesso:
+            print("Venda cancelada. Seu dinheiro foi devolvido.")
+            return # Interrompe antes de descontar o produto
     else:
-        print("Não há troco a ser devolvido.")
+        print("Valor exato inserido. Não há troco a ser devolvido.")
 
-    # Atualizar quantidade do estoque
+    # Só atualiza a quantidade se o pagamento e o troco deram certo
     produtos[indice][3] -= 1
     print("Compra finalizada! Muito Obrigado 😉")
 
-# Rodar a maquina de vendas:
 def iniciar_maquina():
     while True:
         exibir_produtos()
         try:
-            produto_escolhido = int(input("Digite o ID do produto que deseja comprar (ou 0 para sair): "))
+            produto_escolhido = int(input("Digite o ID do produto (ou 0 para sair): "))
         except ValueError:
             print("Erro: digite um ID numérico válido.")
+            print("="*30)
             continue
 
         if produto_escolhido == 0:

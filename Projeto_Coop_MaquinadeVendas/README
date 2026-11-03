@@ -1,0 +1,41 @@
+# ☕ Máquina de Bebidas (Vending Machine)
+
+Alunos: Taina Nakashima e Caio Guilherme
+Professor:
+Projeto colaborativo de simulação de "Máquina de Venda de Bebidas
+
+## 🚀 Funcionalidades
+
+- **Cardápio Dinâmico:** Leitura e exibição de produtos a partir de uma matriz estruturada.
+- **Validação de Estoque:** Verificação de disponibilidade do produto antes de autorizar a cobrança.
+- **Processamento de Pagamentos:** Laço de validação que exige a inserção do valor total ou superior ao preço do produto em dinheiro.
+- **Algoritmo de Troco (Greedy):** Sistema de divisão sequencial (do maior para o menor valor) que calcula a menor quantidade de notas e moedas possíveis para devolução.
+- **Gestão de Cofre Físico:** Simulação prévia do troco (`.copy()`) para garantir que a máquina só efetive a venda se possuir as cédulas exatas necessárias.
+
+## 🧠 Lógica e Estrutura de Dados
+
+Para evitar erros todos os valores financeiros do sistema (preços, pagamentos e trocos) são convertidos e calculados em **centavos** (números inteiros).
+
+## 🔄 Fluxograma do Sistema
+
+```mermaid
+graph TD
+    A[iniciar_maquina] --> B(exibir_produtos)
+    A --> C{Usuário digita ID}
+    C -->|ID = 0| D[Encerra Máquina]
+    C -->|ID Válido| E[comprar_produto]
+    E --> F{Produto tem estoque?}
+    F -->|Não| G[Exibe erro e cancela]
+    F -->|Sim| H[processar_pagamento]
+
+    H --> I{Valor inserido >= Preço?}
+    I -->|Não| H
+    I -->|Sim| J{Precisa de troco?}
+
+    J -->|Não| K[Subtrai estoque e Finaliza Venda]
+    J -->|Sim| L[calcular_troco]
+
+    L --> M{Máquina tem notas/moedas suficientes?}
+    M -->|Não| N[Cancela Venda e devolve dinheiro]
+    M -->|Sim| K
+```
